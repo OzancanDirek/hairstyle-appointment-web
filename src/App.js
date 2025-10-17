@@ -6,6 +6,8 @@ import CalisanListesi from "./Pages/CalisanListesi";
 import AdminPanel from "./Pages/AdminPanel";
 import RandevuListesi from "./Pages/RandevuListesi";
 import HizmetYonetimi from "./Pages/HizmetYonetimi";
+import GunlukKarDashboard from "./Pages/GunlukKarDashboard";
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route path="/CalisanListesi" element={<CalisanListesi />} />
         <Route path="/RandevuListesi" element={<RandevuListesi />} />
         <Route path="/HizmetYonetimi" element={<HizmetYonetimi />} />
+        <Route path="/GunlukKarDashboard" element={<GunlukKarDashboard />} />
       </Routes>
     </Router>
   );
