@@ -42,7 +42,7 @@ function AdminPanel() {
       title: "Raporlar",
       icon: "📊",
       description: "İstatistikler ve raporlar",
-      path: "/raporlar",
+      path: "/GunlukKarDashboard",
       color: "#ec4899",
     },
   ];

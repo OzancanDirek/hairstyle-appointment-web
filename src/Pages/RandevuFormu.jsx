@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/axiosConfig";
+import PhoneVerification from "../components/PhoneVerification";
 
 function RandevuFormu() {
   const [input, setInput] = useState({
@@ -15,6 +16,8 @@ function RandevuFormu() {
   const [hizmetler, setHizmetler] = useState([]);
   const [calisanlar, setCalisanlar] = useState([]);
   const [yukleniyor, setYukleniyor] = useState(true);
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
+  const [firebaseUid, setFirebaseUid] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,16 +47,31 @@ function RandevuFormu() {
     setInput({ ...input, [name]: value });
   };
 
+  // Telefon doğrulama başarılı olduğunda çağrılır
+  const handleVerificationSuccess = (uid, phoneNumber) => {
+    setIsPhoneVerified(true);
+    setFirebaseUid(uid);
+    setInput({ ...input, telefon: phoneNumber });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Telefon doğrulaması yapılmış mı kontrol et
+    if (!isPhoneVerified) {
+      alert("⚠️ Lütfen önce telefon numaranızı doğrulayın!");
+      return;
+    }
 
     const payload = {
       ad: input.ad,
       soyad: input.soyad,
+      telefon: input.telefon,
       tarih: input.tarih,
       saat: input.saat,
       calisan: { id: input.calisan },
       hizmet: { id: input.hizmet },
+      firebaseUid: firebaseUid,
     };
 
     try {
@@ -71,6 +89,8 @@ function RandevuFormu() {
         saat: "",
         hizmet: "",
       });
+      setIsPhoneVerified(false);
+      setFirebaseUid("");
     } catch (error) {
       console.error(
         "Randevu oluşturulamadı:",
@@ -228,39 +248,27 @@ function RandevuFormu() {
                   </div>
                 </div>
 
-                {/* Telefon */}
+                {/* TELEFON DOĞRULAMA KOMPONENTİ - ESKİ TELEFON INPUT YERİNE */}
                 <div style={{ marginBottom: "20px" }}>
-                  <label
-                    style={{
-                      display: "block",
-                      marginBottom: "8px",
-                      color: "#1e293b",
-                      fontSize: "14px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    📞 Telefon
-                  </label>
-                  <input
-                    type="tel"
-                    name="telefon"
-                    value={input.telefon}
-                    onChange={handleChange}
-                    required
-                    placeholder="0555 123 45 67"
-                    style={{
-                      width: "100%",
-                      padding: "12px 16px",
-                      border: "2px solid #e2e8f0",
-                      borderRadius: "10px",
-                      fontSize: "14px",
-                      transition: "all 0.3s ease",
-                      outline: "none",
-                      boxSizing: "border-box",
-                    }}
-                    onFocus={(e) => (e.target.style.borderColor = "#3b82f6")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+                  <PhoneVerification
+                    onVerificationSuccess={handleVerificationSuccess}
                   />
+                  {isPhoneVerified && (
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        padding: "12px",
+                        background: "#d4edda",
+                        color: "#155724",
+                        borderRadius: "10px",
+                        fontSize: "14px",
+                        fontWeight: "600",
+                        textAlign: "center",
+                      }}
+                    >
+                      ✅ Telefon doğrulandı: {input.telefon}
+                    </div>
+                  )}
                 </div>
 
                 {/* Tarih ve Saat Grid */}
