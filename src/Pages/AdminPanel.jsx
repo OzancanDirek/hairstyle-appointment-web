@@ -45,6 +45,14 @@ function AdminPanel() {
       path: "/GunlukKarDashboard",
       color: "#ec4899",
     },
+    {
+      id: 5,
+      title: "Yorumlar",
+      icon: "💬",
+      description: "Yorumlar ve Yorum Yönetimi",
+      path: "/YorumYapSayfasi",
+      color: "#ec4899",
+    },
   ];
 
   return (

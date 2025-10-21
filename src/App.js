@@ -7,6 +7,9 @@ import AdminPanel from "./Pages/AdminPanel";
 import RandevuListesi from "./Pages/RandevuListesi";
 import HizmetYonetimi from "./Pages/HizmetYonetimi";
 import GunlukKarDashboard from "./Pages/GunlukKarDashboard";
+import YorumFormu from "./Pages/YorumFormu";
+import YorumYapSayfasi from "./Pages/YorumYapSayfasi";
+import YorumlariGoruntule from "./Pages/YorumlariGoruntule";
 
 
 
@@ -21,6 +24,11 @@ function App() {
         <Route path="/RandevuListesi" element={<RandevuListesi />} />
         <Route path="/HizmetYonetimi" element={<HizmetYonetimi />} />
         <Route path="/GunlukKarDashboard" element={<GunlukKarDashboard />} />
+        <Route path="/YorumFormu" element={<YorumFormu />} />
+        <Route path="/YorumYapSayfasi" element={<YorumYapSayfasi />} />
+        <Route path="YOrumlariGoruntule" element={<YorumlariGoruntule />} />
+
+
       </Routes>
     </Router>
   );

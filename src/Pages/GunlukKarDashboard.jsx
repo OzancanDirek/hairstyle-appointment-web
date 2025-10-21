@@ -355,7 +355,7 @@ const Grafik = ({ veriler }) => {
 const Tablo = ({ veriler, toplam }) => {
   return (
     <table style={{ width: "100%", borderCollapse: "collapse" }}>
-      <thead>
+      <thead> 
         <tr style={{ borderBottom: "2px solid #ddd" }}>
           <th style={{ padding: "12px", textAlign: "left" }}>Tarih</th>
           <th style={{ padding: "12px", textAlign: "right" }}>Günlük Kar</th>
@@ -365,9 +365,15 @@ const Tablo = ({ veriler, toplam }) => {
       <tbody>
         {veriler.map((item, index) => {
           const oncekiKar = index > 0 ? veriler[index - 1].kar : item.kar;
-          const trend =
-            item.kar > oncekiKar ? "📈" : item.kar < oncekiKar ? "📉" : "➡️";
 
+          const trend =
+            item.kar > oncekiKar ? (
+              <span style={{ color: "#10b981", fontSize: "20px" }}>▲</span>
+            ) : item.kar < oncekiKar ? (
+              <span style={{ color: "#ef4444", fontSize: "20px" }}>▼</span>
+            ) : (
+              <span style={{ color: "#e78b0bff", fontSize: "20px" }}>▶</span>
+            );
           return (
             <tr key={index} style={{ borderBottom: "1px solid #f0f0f0" }}>
               <td style={{ padding: "12px" }}>{item.tarih}</td>

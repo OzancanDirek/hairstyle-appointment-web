@@ -61,7 +61,14 @@ function AnaSayfa() {
             💈
           </div>
           <div>
-            <h1 style={{ margin: "0", fontSize: "20px", fontWeight: "700", color: "#0f172a" }}>
+            <h1
+              style={{
+                margin: "0",
+                fontSize: "20px",
+                fontWeight: "700",
+                color: "#0f172a",
+              }}
+            >
               Ozan Berber
             </h1>
             <p style={{ margin: "0", fontSize: "13px", color: "#64748b" }}>
@@ -69,32 +76,60 @@ function AnaSayfa() {
             </p>
           </div>
         </div>
-        
-        <button
-          onClick={() => navigate("/RandevuFormu")}
-          style={{
-            background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            padding: "10px 24px",
-            fontSize: "14px",
-            fontWeight: "600",
-            cursor: "pointer",
-            transition: "all 0.2s ease",
-            boxShadow: "0 2px 8px rgba(59, 130, 246, 0.3)",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.transform = "translateY(-1px)";
-            e.target.style.boxShadow = "0 4px 12px rgba(59, 130, 246, 0.4)";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = "translateY(0)";
-            e.target.style.boxShadow = "0 2px 8px rgba(59, 130, 246, 0.3)";
-          }}
-        >
-          📅 Randevu Al
-        </button>
+
+        <div style={{ display: "flex", gap: "12px" }}>
+          <button
+            onClick={() => navigate("/RandevuFormu")}
+            style={{
+              background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              padding: "10px 24px",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              boxShadow: "0 2px 8px rgba(59, 130, 246, 0.3)",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "translateY(-1px)";
+              e.target.style.boxShadow = "0 4px 12px rgba(59, 130, 246, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "0 2px 8px rgba(59, 130, 246, 0.3)";
+            }}
+          >
+            📅 Randevu Al
+          </button>
+          <button
+            onClick={() => navigate("/YorumlariGoruntule")}
+            style={{
+              background: "transparent",
+              color: "#374151",
+              border: "2px solid #e5e7eb",
+              borderRadius: "8px",
+              padding: "8px 20px",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "translateY(-1px)";
+              e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
+              e.target.style.background = "#f3f4f6";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "none";
+              e.target.style.background = "transparent";
+            }}
+          >
+            ⭐ Yorumları Görüntüle
+          </button>
+        </div>
       </header>
 
       {/* HERO SECTION */}
@@ -109,58 +144,134 @@ function AnaSayfa() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "relative", zIndex: 1, maxWidth: "800px", margin: "0 auto" }}>
-          <h2 style={{ margin: "0 0 16px 0", fontSize: "42px", fontWeight: "700", lineHeight: "1.2" }}>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            maxWidth: "800px",
+            margin: "0 auto",
+          }}
+        >
+          <h2
+            style={{
+              margin: "0 0 16px 0",
+              fontSize: "42px",
+              fontWeight: "700",
+              lineHeight: "1.2",
+            }}
+          >
             Ozan Hairstyle Design'a Hoş Geldiniz
           </h2>
-          <p style={{ margin: "0 0 32px 0", fontSize: "18px", opacity: "0.95", lineHeight: "1.6" }}>
-            Profesyonel ekibimiz ve kaliteli hizmetlerimizle size özel bakım deneyimi sunuyoruz
+          <p
+            style={{
+              margin: "0 0 32px 0",
+              fontSize: "18px",
+              opacity: "0.95",
+              lineHeight: "1.6",
+            }}
+          >
+            Profesyonel ekibimiz ve kaliteli hizmetlerimizle size özel bakım
+            deneyimi sunuyoruz
           </p>
-          <div style={{ display: "flex", gap: "32px", justifyContent: "center", marginTop: "32px" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "32px",
+              justifyContent: "center",
+              marginTop: "32px",
+            }}
+          >
             <div>
-              <div style={{ fontSize: "32px", fontWeight: "700", marginBottom: "4px" }}>500+</div>
-              <div style={{ fontSize: "14px", opacity: "0.9" }}>Mutlu Müşteri</div>
+              <div
+                style={{
+                  fontSize: "32px",
+                  fontWeight: "700",
+                  marginBottom: "4px",
+                }}
+              >
+                500+
+              </div>
+              <div style={{ fontSize: "14px", opacity: "0.9" }}>
+                Mutlu Müşteri
+              </div>
             </div>
-            <div style={{ width: "1px", background: "rgba(255,255,255,0.2)" }}></div>
+            <div
+              style={{ width: "1px", background: "rgba(255,255,255,0.2)" }}
+            ></div>
             <div>
-              <div style={{ fontSize: "32px", fontWeight: "700", marginBottom: "4px" }}>15+</div>
-              <div style={{ fontSize: "14px", opacity: "0.9" }}>Yıllık Deneyim</div>
+              <div
+                style={{
+                  fontSize: "32px",
+                  fontWeight: "700",
+                  marginBottom: "4px",
+                }}
+              >
+                15+
+              </div>
+              <div style={{ fontSize: "14px", opacity: "0.9" }}>
+                Yıllık Deneyim
+              </div>
             </div>
-            <div style={{ width: "1px", background: "rgba(255,255,255,0.2)" }}></div>
+            <div
+              style={{ width: "1px", background: "rgba(255,255,255,0.2)" }}
+            ></div>
             <div>
-              <div style={{ fontSize: "32px", fontWeight: "700", marginBottom: "4px" }}>10+</div>
-              <div style={{ fontSize: "14px", opacity: "0.9" }}>Farklı Hizmet</div>
+              <div
+                style={{
+                  fontSize: "32px",
+                  fontWeight: "700",
+                  marginBottom: "4px",
+                }}
+              >
+                10+
+              </div>
+              <div style={{ fontSize: "14px", opacity: "0.9" }}>
+                Farklı Hizmet
+              </div>
             </div>
           </div>
         </div>
-        
+
         {/* Decorative elements */}
-        <div style={{
-          position: "absolute",
-          top: "-50px",
-          right: "-50px",
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.1)",
-          filter: "blur(60px)",
-        }}></div>
-        <div style={{
-          position: "absolute",
-          bottom: "-80px",
-          left: "-80px",
-          width: "250px",
-          height: "250px",
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.1)",
-          filter: "blur(70px)",
-        }}></div>
+        <div
+          style={{
+            position: "absolute",
+            top: "-50px",
+            right: "-50px",
+            width: "200px",
+            height: "200px",
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.1)",
+            filter: "blur(60px)",
+          }}
+        ></div>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-80px",
+            left: "-80px",
+            width: "250px",
+            height: "250px",
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.1)",
+            filter: "blur(70px)",
+          }}
+        ></div>
       </section>
 
       {/* HİZMETLER SECTION */}
-      <main style={{ padding: "60px 40px", maxWidth: "1400px", margin: "0 auto" }}>
+      <main
+        style={{ padding: "60px 40px", maxWidth: "1400px", margin: "0 auto" }}
+      >
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
-          <h3 style={{ margin: "0 0 12px 0", fontSize: "32px", fontWeight: "700", color: "#0f172a" }}>
+          <h3
+            style={{
+              margin: "0 0 12px 0",
+              fontSize: "32px",
+              fontWeight: "700",
+              color: "#0f172a",
+            }}
+          >
             Hizmetlerimiz
           </h3>
           <p style={{ margin: "0", fontSize: "16px", color: "#64748b" }}>
@@ -182,7 +293,9 @@ function AnaSayfa() {
               }}
             ></div>
             <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-            <p style={{ marginTop: "16px", color: "#64748b" }}>Hizmetler yükleniyor...</p>
+            <p style={{ marginTop: "16px", color: "#64748b" }}>
+              Hizmetler yükleniyor...
+            </p>
           </div>
         ) : (
           <div
@@ -209,12 +322,14 @@ function AnaSayfa() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "translateY(-4px)";
-                    e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.1)";
+                    e.currentTarget.style.boxShadow =
+                      "0 8px 16px rgba(0, 0, 0, 0.1)";
                     e.currentTarget.style.borderColor = "#cbd5e0";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 1px 3px rgba(0, 0, 0, 0.08)";
+                    e.currentTarget.style.boxShadow =
+                      "0 1px 3px rgba(0, 0, 0, 0.08)";
                     e.currentTarget.style.borderColor = "#e2e8f0";
                   }}
                 >
@@ -225,16 +340,18 @@ function AnaSayfa() {
                       left: "0",
                       right: "0",
                       height: "3px",
-                      background: "linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)",
+                      background:
+                        "linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)",
                     }}
                   ></div>
-                  
+
                   <div
                     style={{
                       width: "56px",
                       height: "56px",
                       borderRadius: "12px",
-                      background: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+                      background:
+                        "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -244,43 +361,75 @@ function AnaSayfa() {
                   >
                     ✂️
                   </div>
-                  
-                  <h4 style={{ 
-                    margin: "0 0 12px 0", 
-                    fontSize: "18px", 
-                    fontWeight: "600", 
-                    color: "#0f172a" 
-                  }}>
+
+                  <h4
+                    style={{
+                      margin: "0 0 12px 0",
+                      fontSize: "18px",
+                      fontWeight: "600",
+                      color: "#0f172a",
+                    }}
+                  >
                     {hizmet.ad}
                   </h4>
-                  
-                  <div style={{ display: "flex", gap: "16px", marginTop: "16px" }}>
-                    <div style={{ 
-                      flex: "1",
-                      background: "#f8fafc",
-                      padding: "10px",
-                      borderRadius: "8px",
-                      textAlign: "center"
-                    }}>
-                      <div style={{ fontSize: "12px", color: "#64748b", marginBottom: "4px" }}>
+
+                  <div
+                    style={{ display: "flex", gap: "16px", marginTop: "16px" }}
+                  >
+                    <div
+                      style={{
+                        flex: "1",
+                        background: "#f8fafc",
+                        padding: "10px",
+                        borderRadius: "8px",
+                        textAlign: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          color: "#64748b",
+                          marginBottom: "4px",
+                        }}
+                      >
                         Süre
                       </div>
-                      <div style={{ fontSize: "16px", fontWeight: "600", color: "#0f172a" }}>
+                      <div
+                        style={{
+                          fontSize: "16px",
+                          fontWeight: "600",
+                          color: "#0f172a",
+                        }}
+                      >
                         {hizmet.sure} dk
                       </div>
                     </div>
-                    
-                    <div style={{ 
-                      flex: "1",
-                      background: "#eff6ff",
-                      padding: "10px",
-                      borderRadius: "8px",
-                      textAlign: "center"
-                    }}>
-                      <div style={{ fontSize: "12px", color: "#1e40af", marginBottom: "4px" }}>
+
+                    <div
+                      style={{
+                        flex: "1",
+                        background: "#eff6ff",
+                        padding: "10px",
+                        borderRadius: "8px",
+                        textAlign: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          color: "#1e40af",
+                          marginBottom: "4px",
+                        }}
+                      >
                         Fiyat
                       </div>
-                      <div style={{ fontSize: "16px", fontWeight: "700", color: "#1e3a8a" }}>
+                      <div
+                        style={{
+                          fontSize: "16px",
+                          fontWeight: "700",
+                          color: "#1e3a8a",
+                        }}
+                      >
                         {hizmet.fiyat}₺
                       </div>
                     </div>
@@ -288,15 +437,19 @@ function AnaSayfa() {
                 </div>
               ))
             ) : (
-              <div style={{ 
-                gridColumn: "1 / -1",
-                textAlign: "center",
-                padding: "40px",
-                background: "white",
-                borderRadius: "12px",
-                border: "1px solid #e2e8f0"
-              }}>
-                <p style={{ color: "#64748b", fontSize: "16px" }}>Henüz hizmet bulunmuyor</p>
+              <div
+                style={{
+                  gridColumn: "1 / -1",
+                  textAlign: "center",
+                  padding: "40px",
+                  background: "white",
+                  borderRadius: "12px",
+                  border: "1px solid #e2e8f0",
+                }}
+              >
+                <p style={{ color: "#64748b", fontSize: "16px" }}>
+                  Henüz hizmet bulunmuyor
+                </p>
               </div>
             )}
           </div>
@@ -314,15 +467,23 @@ function AnaSayfa() {
               border: "1px solid #bfdbfe",
             }}
           >
-            <h3 style={{ 
-              margin: "0 0 12px 0", 
-              fontSize: "24px", 
-              fontWeight: "700", 
-              color: "#0f172a" 
-            }}>
+            <h3
+              style={{
+                margin: "0 0 12px 0",
+                fontSize: "24px",
+                fontWeight: "700",
+                color: "#0f172a",
+              }}
+            >
               Randevunuzu Hemen Alın
             </h3>
-            <p style={{ margin: "0 0 24px 0", fontSize: "15px", color: "#475569" }}>
+            <p
+              style={{
+                margin: "0 0 24px 0",
+                fontSize: "15px",
+                color: "#475569",
+              }}
+            >
               Uygun tarihi ve saati seçerek hızlıca randevu oluşturabilirsiniz
             </p>
             <button
