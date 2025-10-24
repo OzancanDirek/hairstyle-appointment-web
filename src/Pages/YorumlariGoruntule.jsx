@@ -87,6 +87,27 @@ const onayliYorumlar = yorumlar;
         <p style={styles.aciklama}>
           Müşterilerimizin deneyimlerini paylaşımları
         </p>
+        <button
+        onClick={() => window.location.href = '/YorumYapSayfasi'}>
+          <style>
+            {`
+            button {
+              background-color: #3b82f6;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 16px;
+              margin-top: 16px;
+              transition: background-color 0.3s;
+            }
+            button:hover {
+              background-color: #2563eb;
+            }
+          `}
+          </style>
+          Yorum Ekle</button>
       </div>
 
       {/* İstatistikler */}

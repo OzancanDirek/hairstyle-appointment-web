@@ -50,7 +50,7 @@ function AdminPanel() {
       title: "Yorumlar",
       icon: "💬",
       description: "Yorumlar ve Yorum Yönetimi",
-      path: "/YorumYapSayfasi",
+      path: "/YorumlariGoruntule",
       color: "#ec4899",
     },
   ];
