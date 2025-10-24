@@ -5,6 +5,7 @@ function HizmetYonetimi() {
   const [yukleniyor, setYukleniyor] = useState(false);
   const [hata, setHata] = useState("");
   const [modalAcik, setModalAcik] = useState(false);
+  const [seciliHizmet, setSeciliHizmet] = useState(null);
   const [yeniHizmet, setYeniHizmet] = useState({
     ad: "",
     fiyat: "",
@@ -60,6 +61,28 @@ function HizmetYonetimi() {
       });
       if (!res.ok) throw new Error("Silme işlemi başarısız!");
       alert("✅ Hizmet silindi!");
+      fetchHizmetler();
+    } catch (err) {
+      alert("❌ Hata: " + err.message);
+    }
+  };
+
+  const handleGuncelle = async () => {
+    if (!seciliHizmet.ad || !seciliHizmet.fiyat || !seciliHizmet.sure) {
+      alert("Lütfen tüm alanları doldurun!");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:8080/api/hizmet/guncelle", {
+        method: "PUT", //
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(seciliHizmet),
+      });
+      if (!res.ok) throw new Error("Güncelleme işlemi başarısız!");
+
+      alert("✅ Hizmet başarıyla güncellendi!");
+      setSeciliHizmet(null);
       fetchHizmetler();
     } catch (err) {
       alert("❌ Hata: " + err.message);
@@ -340,6 +363,31 @@ function HizmetYonetimi() {
                   >
                     🗑️ Sil
                   </button>
+
+                  <button
+                    onClick={() => setSeciliHizmet({ ...hizmet })}
+                    style={{
+                      marginTop: "10px",
+                      width: "100%",
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "10px",
+                      borderRadius: "8px",
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.background = "#2563eb")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.background = "#3b82f6")
+                    }
+                  >
+                    ✏️ Düzenle
+                  </button>
                 </div>
               </div>
             ))}
@@ -600,9 +648,120 @@ function HizmetYonetimi() {
                   onMouseLeave={(e) => (e.target.style.background = "#e2e8f0")}
                 >
                   ❌ İptal
-                </button>
+                </button>{" "}
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* 👇 BURAYA KOPYALAYIN */}
+      {seciliHizmet && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0,0,0,0.7)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={() => setSeciliHizmet(null)}
+        >
+          <div
+            style={{
+              background: "white",
+              borderRadius: "20px",
+              padding: "32px",
+              width: "90%",
+              maxWidth: "500px",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3>✏️ Hizmet Güncelle</h3>
+
+            <input
+              type="text"
+              value={seciliHizmet.ad}
+              onChange={(e) =>
+                setSeciliHizmet({ ...seciliHizmet, ad: e.target.value })
+              }
+              placeholder="Hizmet Adı"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginBottom: "12px",
+                border: "2px solid #e2e8f0",
+                borderRadius: "8px",
+                boxSizing: "border-box",
+              }}
+            />
+
+            <input
+              type="number"
+              value={seciliHizmet.fiyat}
+              onChange={(e) =>
+                setSeciliHizmet({ ...seciliHizmet, fiyat: e.target.value })
+              }
+              placeholder="Fiyat"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginBottom: "12px",
+                border: "2px solid #e2e8f0",
+                borderRadius: "8px",
+                boxSizing: "border-box",
+              }}
+            />
+
+            <input
+              type="number"
+              value={seciliHizmet.sure}
+              onChange={(e) =>
+                setSeciliHizmet({ ...seciliHizmet, sure: e.target.value })
+              }
+              placeholder="Süre"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginBottom: "12px",
+                border: "2px solid #e2e8f0",
+                borderRadius: "8px",
+                boxSizing: "border-box",
+              }}
+            />
+
+            <button
+              onClick={handleGuncelle}
+              style={{
+                background: "#3b82f6",
+                color: "white",
+                padding: "12px",
+                border: "none",
+                borderRadius: "8px",
+                marginRight: "8px",
+                cursor: "pointer",
+              }}
+            >
+              💾 Güncelle
+            </button>
+            <button
+              onClick={() => setSeciliHizmet(null)}
+              style={{
+                background: "#ef4444",
+                color: "white",
+                padding: "12px",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              ❌ İptal
+            </button>
           </div>
         </div>
       )}
