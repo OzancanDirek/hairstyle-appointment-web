@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
+// ✅ stil objesini ekle
 const stil = {
   sayfa: {
     minHeight: "100vh",
@@ -35,7 +36,7 @@ const GunlukKarDashboard = () => {
   const [yukleniyor, setYukleniyor] = useState(false);
   const [seciliGun, setSeciliGun] = useState("30");
 
-  // Demo veri oluştur- eger backend calısmazsa ekran bos gorunmesib diye ornek veri tasarimi
+  // Demo veri oluştur
   const demoVeriOlustur = (kacGun) => {
     const liste = [];
     const bugun = new Date();
@@ -56,13 +57,16 @@ const GunlukKarDashboard = () => {
     return liste;
   };
 
-  const verileriGetir = async () => {
+  // useCallback ile fonksiyonu wrap et
+  const verileriGetir = useCallback(async () => {
     setYukleniyor(true);
     try {
+      console.log(`API çağrısı: sonKacGun=${seciliGun}`); // ✅ Debug ekle
       const cevap = await fetch(
         `http://localhost:8080/api/istatistik/gunluk-kar?sonKacGun=${seciliGun}`
       );
       const veri = await cevap.json();
+      console.log("API yanıtı:", veri); // ✅ Debug ekle
 
       const duzenlenmis = veri.map((item) => ({
         tarih: new Date(item.tarih).toLocaleDateString("tr-TR", {
@@ -78,12 +82,12 @@ const GunlukKarDashboard = () => {
       setVeriler(demoVeriOlustur(parseInt(seciliGun)));
     }
     setYukleniyor(false);
-  };
+  }, [seciliGun]); // seciliGun dependency olarak ekle
 
-  // Sayfa yüklendiğinde ve gün degisitirildiginde verileri getir
+  // Sayfa yüklendiğinde ve gün değiştiğinde verileri getir
   useEffect(() => {
     verileriGetir();
-  }, [seciliGun]);
+  }, [verileriGetir]);
 
   // Toplam ve ortalama hesapla
   const toplamKar = veriler.reduce(
@@ -192,7 +196,10 @@ const GunlukKarDashboard = () => {
             {["7", "30", "90"].map((gun) => (
               <button
                 key={gun}
-                onClick={() => setSeciliGun(gun)}
+                onClick={() => {
+                  console.log(`Butona tıklandı: ${gun} gün`); // ✅ Debug ekle
+                  setSeciliGun(gun);
+                }}
                 style={{
                   ...stil.buton,
                   background: seciliGun === gun ? "#2563eb" : "#f3f4f6",
@@ -273,7 +280,6 @@ const Grafik = ({ veriler }) => {
         }}
       >
         {veriler.map((item, index) => {
-          // Basit yüzdelik hesaplama - gerçek orana göre
           const yuzde = (item.kar / enBuyukKar) * 100;
 
           return (
@@ -355,7 +361,7 @@ const Grafik = ({ veriler }) => {
 const Tablo = ({ veriler, toplam }) => {
   return (
     <table style={{ width: "100%", borderCollapse: "collapse" }}>
-      <thead> 
+      <thead>
         <tr style={{ borderBottom: "2px solid #ddd" }}>
           <th style={{ padding: "12px", textAlign: "left" }}>Tarih</th>
           <th style={{ padding: "12px", textAlign: "right" }}>Günlük Kar</th>
