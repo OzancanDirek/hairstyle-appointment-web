@@ -46,7 +46,7 @@ function AdminPanel() {
       color: "#ec4899",
     },
     {
-      id: 5,
+      id: 6,
       title: "Yorumlar",
       icon: "💬",
       description: "Yorumlar ve Yorum Yönetimi",
