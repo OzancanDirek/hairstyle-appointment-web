@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-// ✅ stil objesini ekle
 const stil = {
   sayfa: {
     minHeight: "100vh",
@@ -61,12 +60,12 @@ const GunlukKarDashboard = () => {
   const verileriGetir = useCallback(async () => {
     setYukleniyor(true);
     try {
-      console.log(`API çağrısı: sonKacGun=${seciliGun}`); // ✅ Debug ekle
+      console.log(`API çağrısı: sonKacGun=${seciliGun}`);
       const cevap = await fetch(
         `http://localhost:8080/api/istatistik/gunluk-kar?sonKacGun=${seciliGun}`
       );
       const veri = await cevap.json();
-      console.log("API yanıtı:", veri); // ✅ Debug ekle
+      console.log("API yanıtı:", veri);
 
       const duzenlenmis = veri.map((item) => ({
         tarih: new Date(item.tarih).toLocaleDateString("tr-TR", {
@@ -82,14 +81,14 @@ const GunlukKarDashboard = () => {
       setVeriler(demoVeriOlustur(parseInt(seciliGun)));
     }
     setYukleniyor(false);
-  }, [seciliGun]); // seciliGun dependency olarak ekle
+  }, [seciliGun]); 
 
-  // Sayfa yüklendiğinde ve gün değiştiğinde verileri getir
+  
   useEffect(() => {
     verileriGetir();
   }, [verileriGetir]);
 
-  // Toplam ve ortalama hesapla
+  
   const toplamKar = veriler.reduce(
     (toplam, item) => toplam + Number(item.kar),
     0
@@ -197,7 +196,7 @@ const GunlukKarDashboard = () => {
               <button
                 key={gun}
                 onClick={() => {
-                  console.log(`Butona tıklandı: ${gun} gün`); // ✅ Debug ekle
+                  console.log(`Butona tıklandı: ${gun} gün`);
                   setSeciliGun(gun);
                 }}
                 style={{
