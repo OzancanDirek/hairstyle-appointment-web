@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+const API_URL =
+  "https://hairstyle-appointment-backend-production.up.railway.app/api";
 
 function RandevuListesi() {
   const [randevular, setRandevular] = useState([]);
@@ -14,7 +16,7 @@ function RandevuListesi() {
   const fetchRandevular = async () => {
     setYukleniyor(true);
     try {
-      const res = await fetch("http://localhost:8080/api/randevu/aktif");
+      const res = await fetch(`${API_URL}/randevu/aktif`);
       if (!res.ok) throw new Error("Randevu listesi alınamadı");
       const data = await res.json();
       setRandevular(data);
@@ -38,14 +40,12 @@ function RandevuListesi() {
 
   const handleGuncelle = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:8080/api/randevu/update/${seciliRandevu.id}`,
+      const res = await fetch(`${API_URL}/randevu/update/${seciliRandevu.id}`,
         {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(seciliRandevu),
-        }
-      );
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(seciliRandevu),
+      });
       if (!res.ok) throw new Error("Güncelleme başarısız!");
       alert("✅ Randevu güncellendi!");
       setModalAcik(false);

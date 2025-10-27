@@ -62,7 +62,7 @@ const GunlukKarDashboard = () => {
     try {
       console.log(`API çağrısı: sonKacGun=${seciliGun}`);
       const cevap = await fetch(
-        `http://localhost:8080/api/istatistik/gunluk-kar?sonKacGun=${seciliGun}`
+        `https://hairstyle-appointment-backend-production.up.railway.app/api/istatistik/gunluk-kar?sonKacGun=${seciliGun}`
       );
       const veri = await cevap.json();
       console.log("API yanıtı:", veri);

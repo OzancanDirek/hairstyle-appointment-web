@@ -9,7 +9,7 @@ function YorumlariGoruntule() {
     const yorumlariGetir = async () => {
       setYukleniyor(true);
       try {
-        const response = await fetch("http://localhost:8080/api/yorum/tumu");
+        const response = await fetch("https://hairstyle-appointment-backend-production.up.railway.app/api/yorum/tumu");
         if (!response.ok) {
           throw new Error("Yorumlar alınırken bir hata oluştu.");
         }

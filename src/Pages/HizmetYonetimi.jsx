@@ -19,7 +19,7 @@ function HizmetYonetimi() {
   const fetchHizmetler = async () => {
     setYukleniyor(true);
     try {
-      const res = await fetch("http://localhost:8080/api/hizmet/aktif");
+      const res = await fetch("https://hairstyle-appointment-backend-production.up.railway.app/api/hizmet/aktif");
       if (!res.ok) throw new Error("Hizmetler alınamadı");
       const data = await res.json();
       setHizmetler(data);
@@ -37,7 +37,7 @@ function HizmetYonetimi() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/api/hizmet/ekle", {
+      const res = await fetch("https://hairstyle-appointment-backend-production.up.railway.app/api/hizmet/ekle", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(yeniHizmet),
@@ -56,7 +56,7 @@ function HizmetYonetimi() {
     if (!window.confirm("Bu hizmeti silmek istediğinize emin misiniz?")) return;
 
     try {
-      const res = await fetch(`http://localhost:8080/api/hizmet/${id}`, {
+      const res = await fetch(`https://hairstyle-appointment-backend-production.up.railway.app/api/hizmet/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Silme işlemi başarısız!");
@@ -74,7 +74,7 @@ function HizmetYonetimi() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/api/hizmet/guncelle", {
+      const res = await fetch("https://hairstyle-appointment-backend-production.up.railway.app/api/hizmet/guncelle", {
         method: "PUT", //
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(seciliHizmet),

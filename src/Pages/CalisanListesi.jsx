@@ -25,7 +25,7 @@ function CalisanListele() {
     setYukleniyor(true);
     try {
       const res = await fetch(
-        "http://localhost:8080/api/calisan/getCalisanList"
+        "https://hairstyle-appointment-backend-production.up.railway.app/api/calisan/getCalisanList"
       );
       if (!res.ok) throw new Error("Çalışan listesi alınamadı");
       const data = await res.json();
@@ -42,7 +42,7 @@ function CalisanListele() {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/api/calisan/deleteCalisan/${id}`,
+        `https://hairstyle-appointment-backend-production.up.railway.app/api/calisan/deleteCalisan/${id}`,
         {
           method: "DELETE",
         }
@@ -58,7 +58,7 @@ function CalisanListele() {
   const handleGuncelle = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/api/calisan/updateCalisan/${seciliCalisan.id}`,
+        `https://hairstyle-appointment-backend-production.up.railway.app/api/calisan/updateCalisan/${seciliCalisan.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -83,7 +83,7 @@ function CalisanListele() {
       return;
     }
 
-    fetch("http://localhost:8080/api/calisan/createCalisan", {
+    fetch("https://hairstyle-appointment-backend-production.up.railway.app/api/calisan/createCalisan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(yeniCalisan),

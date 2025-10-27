@@ -28,7 +28,7 @@ const YorumYapSayfasi = ({ onSuccess }) => {
     setHata('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/yorum/ekle', {
+      const response = await fetch('https://hairstyle-appointment-backend-production.up.railway.app/api/yorum/ekle', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
