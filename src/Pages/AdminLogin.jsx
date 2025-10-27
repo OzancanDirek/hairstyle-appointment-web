@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios";
 
 function AdminLogin() {
   const [credentials, setCredentials] = useState({
@@ -17,10 +17,7 @@ function AdminLogin() {
     setYukleniyor(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
-        credentials
-      );
+      const response = await api.post("/auth/login", credentials);
 
       if (response.data.basarili) {
         // Login başarılı - localStorage'a kaydet
