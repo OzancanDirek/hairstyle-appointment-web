@@ -49,9 +49,9 @@ function CalisanListele() {
       );
       if (!res.ok) throw new Error("Silme işlemi başarısız!");
       setCalisanlar((prev) => prev.filter((c) => c.id !== id));
-      alert("Çalışan başarıyla silindi ✅");
+      alert("Çalışan başarıyla silindi");
     } catch (err) {
-      alert("❌ Hata: " + err.message);
+      alert(" Hata: " + err.message);
     }
   };
 

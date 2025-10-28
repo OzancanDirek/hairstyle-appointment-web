@@ -7,7 +7,6 @@ function RandevuFormu() {
     ad: "",
     soyad: "",
     calisan: "",
-    telefon: "",
     tarih: "",
     saat: "",
     hizmet: "",
@@ -16,7 +15,6 @@ function RandevuFormu() {
   const [hizmetler, setHizmetler] = useState([]);
   const [calisanlar, setCalisanlar] = useState([]);
   const [yukleniyor, setYukleniyor] = useState(true);
-  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [firebaseUid, setFirebaseUid] = useState("");
 
   useEffect(() => {
@@ -47,26 +45,14 @@ function RandevuFormu() {
     setInput({ ...input, [name]: value });
   };
 
-  // Telefon doğrulama başarılı olduğunda çağrılır
-  const handleVerificationSuccess = (uid, phoneNumber) => {
-    setIsPhoneVerified(true);
-    setFirebaseUid(uid);
-    setInput({ ...input, telefon: phoneNumber });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Telefon doğrulaması yapılmış mı kontrol et
-    if (!isPhoneVerified) {
-      alert("⚠️ Lütfen önce telefon numaranızı doğrulayın!");
-      return;
-    }
 
     const payload = {
       ad: input.ad,
       soyad: input.soyad,
-      telefon: input.telefon,
       tarih: input.tarih,
       saat: input.saat,
       calisan: { id: input.calisan },
@@ -84,12 +70,10 @@ function RandevuFormu() {
         ad: "",
         soyad: "",
         calisan: "",
-        telefon: "",
         tarih: "",
         saat: "",
         hizmet: "",
       });
-      setIsPhoneVerified(false);
       setFirebaseUid("");
     } catch (error) {
       console.error(
@@ -247,30 +231,7 @@ function RandevuFormu() {
                     />
                   </div>
                 </div>
-
-                {/* TELEFON DOĞRULAMA KOMPONENTİ - ESKİ TELEFON INPUT YERİNE */}
-                <div style={{ marginBottom: "20px" }}>
-                  <PhoneVerification
-                    onVerificationSuccess={handleVerificationSuccess}
-                  />
-                  {isPhoneVerified && (
-                    <div
-                      style={{
-                        marginTop: "10px",
-                        padding: "12px",
-                        background: "#d4edda",
-                        color: "#155724",
-                        borderRadius: "10px",
-                        fontSize: "14px",
-                        fontWeight: "600",
-                        textAlign: "center",
-                      }}
-                    >
-                      ✅ Telefon doğrulandı: {input.telefon}
-                    </div>
-                  )}
-                </div>
-
+                
                 {/* Tarih ve Saat Grid */}
                 <div
                   style={{
