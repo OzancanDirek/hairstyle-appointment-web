@@ -77,7 +77,7 @@ function AdminPanel() {
             textAlign: "center",
           }}
         >
-          <div style={{ fontSize: "64px", marginBottom: "16px" }}>🎛️</div>
+          <div style={{ fontSize: "64px", marginBottom: "16px" }}>👩🏻‍💻</div>
           <h1
             style={{
               margin: "0 0 12px 0",
