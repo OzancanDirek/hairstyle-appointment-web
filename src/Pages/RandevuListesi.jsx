@@ -16,7 +16,7 @@ function RandevuListesi() {
   const fetchRandevular = async () => {
     setYukleniyor(true);
     try {
-      const res = await fetch(`${API_URL}/randevu/aktif`);
+      const res = await fetch(`${API_URL}/getAllRandevuList`);
       if (!res.ok) throw new Error("Randevu listesi alınamadı");
       const data = await res.json();
       setRandevular(data);
@@ -40,8 +40,7 @@ function RandevuListesi() {
 
   const handleGuncelle = async () => {
     try {
-      const res = await fetch(`${API_URL}/randevu/update/${seciliRandevu.id}`,
-        {
+      const res = await fetch(`${API_URL}/randevu/update/${seciliRandevu.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(seciliRandevu),
@@ -224,15 +223,19 @@ function RandevuListesi() {
                   </div>
                   <div
                     style={{
-                      background: "#d1fae5",
-                      color: "#065f46",
+                      background:
+                        randevu.durum === "TAMAMLANDI" ? "#d1fae5" : "#fef3c7",
+                      color:
+                        randevu.durum === "TAMAMLANDI" ? "#065f46" : "#92400e",
                       padding: "5px 12px",
                       borderRadius: "6px",
                       fontSize: "12px",
                       fontWeight: "600",
                     }}
                   >
-                    Aktif
+                    {randevu.durum === "TAMAMLANDI"
+                      ? "✅ Tamamlandı"
+                      : "⏳ Beklemede"}
                   </div>
                 </div>
 
