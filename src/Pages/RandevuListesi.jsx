@@ -16,7 +16,7 @@ function RandevuListesi() {
   const fetchRandevular = async () => {
     setYukleniyor(true);
     try {
-      const res = await fetch(`${API_URL}/randevu/aktif`);
+      const res = await fetch(`${API_URL}/randevu/getBeklemede`);
       if (!res.ok) throw new Error("Randevu listesi alınamadı");
       const data = await res.json();
       setRandevular(data);
