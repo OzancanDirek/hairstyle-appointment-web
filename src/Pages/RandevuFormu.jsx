@@ -360,7 +360,7 @@ function RandevuFormu() {
                               backgroundColor: dolu ? "#f1f5f9" : "white",
                             }}
                           >
-                            {saat} {dolu ? "❌ Dolu" : "✅"}
+                            {saat} {dolu ? "❌ Dolu" : ""}
                           </option>
                         );
                       })}
