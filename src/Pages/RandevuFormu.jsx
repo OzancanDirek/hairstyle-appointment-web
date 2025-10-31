@@ -290,6 +290,8 @@ function RandevuFormu() {
                       name="saat"
                       value={input.saat}
                       onChange={handleChange}
+                      min={"09:00"}
+                      max={"20:00"}
                       required
                       style={{
                         width: "100%",
