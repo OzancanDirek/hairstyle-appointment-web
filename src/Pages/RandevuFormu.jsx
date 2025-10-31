@@ -15,6 +15,7 @@ function RandevuFormu() {
   const [calisanlar, setCalisanlar] = useState([]);
   const [yukleniyor, setYukleniyor] = useState(true);
   const [firebaseUid, setFirebaseUid] = useState("");
+  const [doluSaatler, setDoluSaatler] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +39,26 @@ function RandevuFormu() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchDoluSaatler = async () => {
+      if (input.calisan && input.tarih) {
+        try {
+          const response = await api.get(
+            `/randevu/dolu-saatler?calisanId=${input.calisan}&tarih=${input.tarih}`
+          );
+          setDoluSaatler(response.data);
+          console.log("Dolu saatler:", response.data);
+        } catch (error) {
+          console.error("Dolu saatler alınamadı:", error);
+        }
+      } else {
+        setDoluSaatler([]);
+      }
+    };
+
+    fetchDoluSaatler();
+  }, [input.calisan, input.tarih]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -303,29 +324,46 @@ function RandevuFormu() {
                       onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
                     >
                       <option value="">Saat seçiniz</option>
-                      <option value="09:00">09:00</option>
-                      <option value="09:30">09:30</option>
-                      <option value="10:00">10:00</option>
-                      <option value="10:30">10:30</option>
-                      <option value="11:00">11:00</option>
-                      <option value="11:30">11:30</option>
-                      <option value="12:00">12:00</option>
-                      <option value="12:30">12:30</option>
-                      <option value="13:00">13:00</option>
-                      <option value="13:30">13:30</option>
-                      <option value="14:00">14:00</option>
-                      <option value="14:30">14:30</option>
-                      <option value="15:00">15:00</option>
-                      <option value="15:30">15:30</option>
-                      <option value="16:00">16:00</option>
-                      <option value="16:30">16:30</option>
-                      <option value="17:00">17:00</option>
-                      <option value="17:30">17:30</option>
-                      <option value="18:00">18:00</option>
-                      <option value="18:30">18:30</option>
-                      <option value="19:00">19:00</option>
-                      <option value="19:30">19:30</option>
-                      <option value="20:00">20:00</option>
+                      {[
+                        "09:00",
+                        "09:30",
+                        "10:00",
+                        "10:30",
+                        "11:00",
+                        "11:30",
+                        "12:00",
+                        "12:30",
+                        "13:00",
+                        "13:30",
+                        "14:00",
+                        "14:30",
+                        "15:00",
+                        "15:30",
+                        "16:00",
+                        "16:30",
+                        "17:00",
+                        "17:30",
+                        "18:00",
+                        "18:30",
+                        "19:00",
+                        "19:30",
+                        "20:00",
+                      ].map((saat) => {
+                        const dolu = doluSaatler.includes(saat);
+                        return (
+                          <option
+                            key={saat}
+                            value={saat}
+                            disabled={dolu}
+                            style={{
+                              color: dolu ? "#cbd5e1" : "#1e293b",
+                              backgroundColor: dolu ? "#f1f5f9" : "white",
+                            }}
+                          >
+                            {saat} {dolu ? "❌ Dolu" : "✅"}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                 </div>
