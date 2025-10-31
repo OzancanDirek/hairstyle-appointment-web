@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axiosConfig";
 
 function AdminPanel() {
   const navigate = useNavigate();
+
+  const [istatistikler, setIstatistikler] = useState({
+    bugunRandevu: 0,
+    aktifCalisan: 0,
+    aktifHizmet: 0,
+  });
+
+  useEffect(() => {
+    const fetchIstatistikler = async () => {
+      try {
+        const [randevuRes, calisanRes, hizmetRes] = await Promise.all([
+          api.get("/randevu/bugunki-sayisi"),
+          api.get("/calisan/aktif-sayisi"),
+          api.get("/hizmet/aktif-sayisi"),
+        ]);
+
+        setIstatistikler({
+          bugunRandevu: randevuRes.data,
+          aktifCalisan: calisanRes.data,
+          aktifHizmet: hizmetRes.data,
+        });
+      } catch (error) {
+        console.error("İstatistikler alınamadı:", error);
+      }
+    };
+
+    fetchIstatistikler();
+  }, []);
 
   const menuItems = [
     {
@@ -204,6 +233,7 @@ function AdminPanel() {
             gap: "20px",
           }}
         >
+          {/* Bugünkü Randevular (BEKLEMEDE) */}
           <div
             style={{
               background: "rgba(255, 255, 255, 0.95)",
@@ -221,12 +251,14 @@ function AdminPanel() {
                 marginBottom: "8px",
               }}
             >
-              24
+              {istatistikler.bugunRandevu}
             </div>
             <div style={{ fontSize: "14px", color: "#64748b" }}>
               Bugünkü Randevular
             </div>
           </div>
+
+          {/* Aktif Çalışan */}
           <div
             style={{
               background: "rgba(255, 255, 255, 0.95)",
@@ -244,12 +276,14 @@ function AdminPanel() {
                 marginBottom: "8px",
               }}
             >
-              12
+              {istatistikler.aktifCalisan}
             </div>
             <div style={{ fontSize: "14px", color: "#64748b" }}>
               Aktif Çalışan
             </div>
           </div>
+
+          {/* Aktif Hizmet */}
           <div
             style={{
               background: "rgba(255, 255, 255, 0.95)",
@@ -267,33 +301,10 @@ function AdminPanel() {
                 marginBottom: "8px",
               }}
             >
-              8
+              {istatistikler.aktifHizmet}
             </div>
             <div style={{ fontSize: "14px", color: "#64748b" }}>
               Aktif Hizmet
-            </div>
-          </div>
-          <div
-            style={{
-              background: "rgba(255, 255, 255, 0.95)",
-              borderRadius: "12px",
-              padding: "24px",
-              textAlign: "center",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "32px",
-                fontWeight: "700",
-                color: "#ec4899",
-                marginBottom: "8px",
-              }}
-            >
-              156
-            </div>
-            <div style={{ fontSize: "14px", color: "#64748b" }}>
-              Toplam Müşteri
             </div>
           </div>
         </div>
